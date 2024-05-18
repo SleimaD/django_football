@@ -1,35 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
-# class Continent(models.Model):
-#     name = models.CharField(max_length=100)
-
-
-# class Country(models.Model):
-#     name = models.CharField(max_length=100)
-#     continent = models.ForeignKey(Continent, on_delete=models.CASCADE, null=True)
-
-# class Team(models.Model):
-#     country = models.ForeignKey(Country, related_name="bands", on_delete=models.CASCADE, null=True)
-#     image = models.ImageField(upload_to='images/', blank=True)
-#     name = models.CharField(max_length=100)
-#     genre = models.CharField(max_length=100)
-#     creation_year = models.IntegerField()
-#     city = models.CharField(max_length=50, null=True)
-
-# class Player(models.Model):
-#     lastname = models.CharField(max_length=50)
-#     firstname = models.CharField(max_length=50)
-#     age = models.IntegerField()
-#     phone_number = models.CharField(max_length=100)
-#     gender = models.CharField(max_length=50)
-#     origin = models.CharField(max_length=100)
-#     team = models.ForeignKey(Team, related_name="members", on_delete=models.SET_NULL, null=True)
-#     image = models.ImageField(upload_to='images/', blank=True)
-#     position = models.CharField(max_length=50)
-
-
 
 class Continent(models.Model):
     name = models.CharField(max_length=100)
