@@ -45,6 +45,8 @@ class Equipe(models.Model):
     ville = models.CharField(max_length=100)
     pays = models.ForeignKey(Pays, on_delete=models.SET_NULL, null=True)
     max_joueurs = models.IntegerField(default=13)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
+
 
 
 class Role(models.Model):
@@ -61,7 +63,7 @@ class Joueur(models.Model):
     email = models.EmailField()
     genre = models.CharField(max_length=10)
     pays_origine = models.ForeignKey(Pays, on_delete=models.SET_NULL, null=True)
-    image = models.ImageField(upload_to='joueur_images/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
     equipe = models.ForeignKey(Equipe, on_delete=models.SET_NULL, null=True, related_name='joueurs')
 
