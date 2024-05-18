@@ -72,10 +72,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'exos14-05',  
+        'NAME': 'football',  
         "HOST":'localhost',
-        'USER':'root',
         'PASSWORD':'password',
+        'USER':'root',
         'PORT':'3306',
     }
 }
