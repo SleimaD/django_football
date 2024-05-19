@@ -97,9 +97,9 @@ def equipe_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def equipe_detail(request, pk):
+def equipe_detail(request, id):
     try:
-        equipe = Equipe.objects.get(pk=pk)
+        equipe = Equipe.objects.get(id=id)
     except Equipe.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -130,9 +130,9 @@ def joueur_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def joueur_detail(request, pk):
+def joueur_detail(request, id):
     try:
-        joueur = Joueur.objects.get(pk=pk)
+        joueur = Joueur.objects.get(id=id)
     except Joueur.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
