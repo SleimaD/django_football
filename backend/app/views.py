@@ -1,9 +1,52 @@
 from django.shortcuts import render
+from django.db.models import Count, Q, F
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Continent, Pays, Equipe, Joueur, Role
 from .serializers import ContinentSerializer, PaysSerializer, EquipeSerializer, JoueurSerializer, RoleSerializer
+
+
+
+@api_view(['GET'])
+def home_data(request):
+    data = {}
+
+    #! Équipes remplies 
+    filled_teams = Equipe.objects.annotate(player_count=Count('joueurs')).filter(player_count=F('max_joueurs'))
+    data['filled_teams'] = EquipeSerializer(filled_teams, many=True).data
+
+    #! Équipes non remplies
+    not_filled_teams = Equipe.objects.annotate(player_count=Count('joueurs')).filter(player_count__lt=F('max_joueurs'))[:2]
+    data['not_filled_teams'] = EquipeSerializer(not_filled_teams, many=True).data
+
+    #! Joueurs sans équipe
+    free_players = Joueur.objects.filter(equipe__isnull=True)[:4]
+    data['free_players'] = JoueurSerializer(free_players, many=True).data
+
+    #! Joueurs avec équipe
+    players_with_teams = Joueur.objects.exclude(equipe__isnull=True)[:4]
+    data['players_with_teams'] = JoueurSerializer(players_with_teams, many=True).data
+
+    #! Équipes d'Europe et hors Europe
+    european_teams = Equipe.objects.filter(pays__continent__name="Europe")
+    non_european_teams = Equipe.objects.exclude(pays__continent__name="Europe")
+    data['european_teams'] = EquipeSerializer(european_teams, many=True).data
+    data['non_european_teams'] = EquipeSerializer(non_european_teams, many=True).data
+
+    #! Joueuses aléatoires avec équipe 
+    random_female_players = Joueur.objects.filter(
+        genre='Female',  
+        equipe__isnull=False
+    ).order_by('?')[:5]
+    data['random_female_players'] = JoueurSerializer(random_female_players, many=True).data
+
+    #! Joueurs aléatoires avec équipe 
+    random_players = Joueur.objects.exclude(equipe__isnull=True).order_by('?')[:5]
+    data['random_players'] = JoueurSerializer(random_players, many=True).data
+
+    return Response(data)
+
 
 
 #! views to display

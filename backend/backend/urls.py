@@ -11,4 +11,5 @@ urlpatterns = [
     path('continents/', views.continent_list, name='continent-list'),
     path('pays/', views.pays_list, name='pays-list'),
     path('roles/', views.role_list, name='role-list'),
+    path('api/home/', views.home_data, name='home-data'),
 ]
