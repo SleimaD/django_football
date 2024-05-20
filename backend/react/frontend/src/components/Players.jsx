@@ -114,12 +114,26 @@ function Players() {
             console.error('Error updating player:', error.response.data);
         });
     };
+
+    const deletePlayer = (id) => {
+        console.log(`Attempting to delete player with id: ${id}`);
+        axios.delete(`http://localhost:8000/joueurs/${id}/`)
+            .then(() => {
+                console.log(`Deleted player with id: ${id}`);
+                const updatedPlayers = players.filter(player => player.id !== id);
+                setPlayers(updatedPlayers);
+            })
+            .catch(error => {
+                console.error('Error deleting player:', error);
+            });
+    };
+    
                 
     return (
         <div className='text-white w-[97vw] h-[100vh]  p-4 '>
             <h1 className='text-center flex justify-center mb-5 mt-7 text-5xl font-bold underline'>Tous nos joueurs</h1>
-            <Link to="/players/create" className='text-center flex justify-center mb-5 text-green-400 text-white '>Add New Player</Link>
-            <div className='p-2 flex justify-center items-center flex-wrap gap-[8rem] mt-10'>
+            <Link to="/players/create" className='text-center flex justify-center mb-5 text-green-400'>Add New Player</Link>
+            <div className='p-2 flex justify-center items-center flex-wrap gap-[5rem] mt-10'>
             {players.map(player => (
                 <div key={player.id} >
                 <div class="containerr flex justify-center flex-col gap-3">
@@ -170,7 +184,7 @@ function Players() {
                             ) : (
                                 <p>Dans aucune equipe</p>
                             )}
-                            <div className='flex justify-center items-center gap-2'>
+                            <div className='flex justify-center items-center gap-2 mb-5'>
                                 <Link to={`/players/${player.id}`} className='bg-[#0b0e27] text-white p-1 px-4 rounded-xl'>View</Link>
                                 <button className='bg-[#2db48e] text-white p-1 px-3 rounded-xl' onClick={() => handleEditClick(player)}>Edit</button>
                                 <button className='bg-[#7e1d1d] text-white p-1 px-3 rounded-xl' onClick={() => deletePlayer(player.id)}>Delete</button>
