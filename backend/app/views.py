@@ -20,7 +20,7 @@ def home_data(request):
     not_filled_teams = Equipe.objects.annotate(player_count=Count('joueurs')).filter(player_count__lt=F('max_joueurs'))[:2]
     data['not_filled_teams'] = EquipeSerializer(not_filled_teams, many=True).data
 
-    #! Joueurs sans équipe
+    #! Joueurs sans équipe  
     free_players = Joueur.objects.filter(equipe__isnull=True)[:4]
     data['free_players'] = JoueurSerializer(free_players, many=True).data
 
@@ -37,7 +37,6 @@ def home_data(request):
     #! Joueuses aléatoires avec équipe 
     random_female_players = Joueur.objects.filter(
         genre='Female',  
-        equipe__isnull=False
     ).order_by('?')[:5]
     data['random_female_players'] = JoueurSerializer(random_female_players, many=True).data
 
@@ -146,7 +145,6 @@ def joueur_detail(request, id):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        # Supprimer l'image du joueur si présente
         if joueur.image:
             joueur.image.delete()
         joueur.delete()
