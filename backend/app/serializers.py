@@ -18,7 +18,6 @@ class PaysSerializer(serializers.ModelSerializer):
 
 
 class JoueurSerializer(serializers.ModelSerializer):
-    # equipe = EquipeSerializer(read_only=True)
     class Meta:
         model = Joueur
         fields = '__all__'
@@ -27,7 +26,7 @@ class JoueurSerializer(serializers.ModelSerializer):
 class EquipeSerializer(serializers.ModelSerializer):
     joueur_count = serializers.SerializerMethodField()
     joueurs = JoueurSerializer(many=True, read_only=True) 
-    
+
     class Meta:
         model = Equipe
         fields = '__all__'

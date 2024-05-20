@@ -97,7 +97,6 @@ function Home() {
                         <div className=' border-2 border-[#484747] w-[170px] h-[120px] p-2 rounded-2xl overflow-hidden '>
                                 <img className='w-[100%] h-[100%]' src={`http://localhost:8000/${team.image}`} alt={team.nom}></img>
                         </div>
-                        {/* <p>{team.nom_club} - {team.ville} </p>  */}
                     </div>
                 ))}
             </section>

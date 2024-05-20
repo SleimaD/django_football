@@ -48,12 +48,12 @@ function Teams() {
     const handleSave = (event) => {
         event.preventDefault();
     
-        // Création d'un objet FormData pour l'envoi des fichiers et des données
+        //! Création d'un objet FormData pour l'envoi des fichiers et des données
         const formData = new FormData();
         formData.append('nom_club', editFormData.nom_club);
         formData.append('ville', editFormData.ville);
         formData.append('max_joueurs', editFormData.max_joueurs);
-        formData.append('pays', editFormData.pays);  // Assurez-vous que c'est l'ID du pays
+        formData.append('pays', editFormData.pays);  
         if (editFormData.image instanceof File) {
             formData.append('image', editFormData.image);
         }
@@ -75,7 +75,7 @@ function Teams() {
         })
         .catch(error => {
             console.error('Error updating team:', error);
-            console.log(error.response.data);  // Afficher les détails de l'erreur retournée par Django
+            console.log(error.response.data);  
         });
     };
     
