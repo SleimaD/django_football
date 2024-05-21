@@ -37,7 +37,7 @@ header {
     background-attachment: fixed;
     background-repeat: no-repeat;
     z-index: -1;
-    filter: brightness(25%) blur(4px);
+    filter: brightness(35%) blur(4px);
 }
 
 .sectionimgs {
@@ -59,7 +59,7 @@ header {
     background-attachment: fixed;
     background-repeat: no-repeat;
     z-index: -1;
-    filter: brightness(20%) blur(4px);
+    filter: brightness(40%) blur(4px);
 }
 
 

@@ -9,14 +9,21 @@ import TeamDetails from './components/TeamDetails';
 import CreateTeam from './components/CreateTeam';
 import PlayerDetails from './components/PlayerDetails';
 import CreatePlayer from './components/CreatePlayer';
+import AOS from "aos";
+import "./../node_modules/aos/dist/aos.css"
 
 function App() {
+
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   return (
     <Router>
     <div className='w-full h-[100vh]'>
     
       <header className='w-full h-[900px] p-3 flex justify-center items-start  '>
-        <nav className='bg-[#695f5f] backdrop-blur-2xl text-white p-4 rounded-3xl w-[30%] mt-2 fixed'>
+        <nav  className='bg-[#695f5f] backdrop-blur-2xl text-white p-4 rounded-3xl w-[30%] mt-2 fixed'>
           <ul className='flex justify-center items-center gap-16 '>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/teams">Teams</Link></li>

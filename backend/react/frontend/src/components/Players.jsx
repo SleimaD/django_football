@@ -135,7 +135,7 @@ function Players() {
             <Link to="/players/create" className='text-center flex justify-center mb-5 text-green-400'>Add New Player</Link>
             <div className='p-2 flex justify-center items-center flex-wrap gap-[5rem] mt-10'>
             {players.map(player => (
-                <div key={player.id} >
+                <di data-aos="flip-right" key={player.id} >
                 <div class="containerr flex justify-center flex-col gap-3">
                     <div class="cardd flex justify-center items-end overflow-hidden">
                         <img className='w-[180px]' src={`http://localhost:8000/${player.image}`} alt={player.nom} />
@@ -145,7 +145,7 @@ function Players() {
                         <div className='text-black'>
                             <input
                                 type="text"
-                                name="nom"
+                                name="nom" 
                                 value={editFormData.nom}
                                 onChange={handleEditFormChange}
                             />
@@ -191,7 +191,7 @@ function Players() {
                             </div>
                         </div>
                     )}
-                </div>
+                </di>
             ))}
 
             </div>
