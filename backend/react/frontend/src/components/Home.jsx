@@ -33,7 +33,7 @@ function Home() {
     return (
 
         <div className='text-white mt-16'>
-            <section data-aos="zoom-in" className='sectioncoach w-full flex justify-between items-center p-4 '>
+            <section  className='sectioncoach w-full flex justify-between items-center p-4 '>
                 <div className='w-[50%] flex flex-col justify-center items-center'>
                     <h3 className=' p-2 text-3xl font-bold mb-4'>Actu-Foot</h3>
                     <p className='ms-6 p-3'>
